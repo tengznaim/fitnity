@@ -42,6 +42,7 @@
   color: var(--dark-gray);
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .sidebar {
@@ -57,6 +58,7 @@
 }
 
 .sidebarLinks {
+  font-weight: 600;
   position: absolute;
   height: 200px;
   display: flex;

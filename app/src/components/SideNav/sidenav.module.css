@@ -1,0 +1,33 @@
+.sidenav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  left: 0;
+  top: 50%;
+  transform: translate(0%, -50%);
+  width: 60px;
+  height: 300px;
+  background-color: var(--dark-purple);
+  border-radius: 0px 20px 20px 0px;
+}
+
+.linkItem {
+  color: var(--white);
+}
+
+.linkItem .navIcon {
+  height: 30px;
+  width: 30px;
+}
+
+.activeLink {
+  color: var(--light-yellow);
+}
+
+@media screen and (max-width: 768px) {
+  .sidenav {
+    display: none;
+  }
+}
