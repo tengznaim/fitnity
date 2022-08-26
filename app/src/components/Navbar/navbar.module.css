@@ -1,0 +1,107 @@
+.navContainer {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 100%;
+  z-index: 2;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(0%, -50%);
+  color: var(--dark-gray);
+}
+
+.pointContainer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0%, -50%);
+}
+
+.pointContainer p {
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+#logoHighlight {
+  color: var(--dark-purple);
+}
+
+#pointIcon {
+  color: var(--dark-purple);
+}
+
+.toggleButton {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--dark-gray);
+  background: none;
+  border: none;
+}
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  height: 100vh;
+  width: 80%;
+  background-color: var(--light-purple);
+}
+
+.hidden {
+  display: none;
+}
+
+.sidebarLinks {
+  position: absolute;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.linkItem {
+  font-size: 1rem;
+  color: var(--dark-gray);
+  text-decoration: none;
+}
+
+.activeLink {
+  border-bottom: 2px solid var(--dark-purple);
+}
+
+.sidebarLinks li {
+  list-style-type: none;
+}
+
+@media screen and (max-width: 768px) {
+  .logo {
+    font-size: 1rem;
+  }
+  .pointContainer {
+    font-size: 1rem;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+  #navToggle {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0%, -50%);
+  }
+  #sidebarToggle {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
