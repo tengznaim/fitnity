@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
+.sidebarWrapper {
+  display: none;
+}
+
 .sidebar {
   position: fixed;
   right: 0;
@@ -92,6 +96,9 @@
     font-size: 1rem;
     right: 50%;
     transform: translate(50%, -50%);
+  }
+  .sidebarWrapper {
+    display: block;
   }
   #navToggle {
     display: flex;
