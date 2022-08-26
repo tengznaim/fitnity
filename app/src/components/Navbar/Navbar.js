@@ -25,53 +25,57 @@ function Navbar() {
         id={styles.navToggle}>
         <HiOutlineMenu />
       </button>
-      <div
-        className={
-          sidebarVisible ? styles.sidebar : `${styles.sidebar} ${styles.hidden}`
-        }>
-        <button
-          className={styles.toggleButton}
-          onClick={() => {
-            setSidebarVisible(!sidebarVisible);
-          }}
-          id={styles.sidebarToggle}>
-          <RiCloseCircleLine />
-        </button>
-        <ul className={styles.sidebarLinks}>
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.linkItem} ${styles.activeLink}`
-                  : styles.linkItem
-              }>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/create-event"
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.linkItem} ${styles.activeLink}`
-                  : styles.linkItem
-              }>
-              Create an Event
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sports-of-fame"
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.linkItem} ${styles.activeLink}`
-                  : styles.linkItem
-              }>
-              Sports of Fame
-            </NavLink>
-          </li>
-        </ul>
+      <div className={styles.sidebarWrapper}>
+        <div
+          className={
+            sidebarVisible
+              ? styles.sidebar
+              : `${styles.sidebar} ${styles.hidden}`
+          }>
+          <button
+            className={styles.toggleButton}
+            onClick={() => {
+              setSidebarVisible(!sidebarVisible);
+            }}
+            id={styles.sidebarToggle}>
+            <RiCloseCircleLine />
+          </button>
+          <ul className={styles.sidebarLinks}>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.linkItem} ${styles.activeLink}`
+                    : styles.linkItem
+                }>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/create-event"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.linkItem} ${styles.activeLink}`
+                    : styles.linkItem
+                }>
+                Create an Event
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/sports-of-fame"
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.linkItem} ${styles.activeLink}`
+                    : styles.linkItem
+                }>
+                Sports of Fame
+              </NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
