@@ -2,21 +2,22 @@ import styles from "./home.module.css";
 import Navbar from "../Navbar/Navbar";
 import SideNav from "../SideNav/SideNav";
 import { useState } from "react";
+import { useNavigate, createSearchParams } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    activity: "",
+    activity: "hiking",
     searchType: "",
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Update method to redirect to the search page.
-    console.log(formData);
-    // navigate({
-    //   pathname: "search",
-    //   search: createSearchParams(formData).toString(),
-    // });
+    navigate({
+      pathname: "search",
+      search: createSearchParams(formData).toString(),
+    });
   };
 
   return (
@@ -31,6 +32,7 @@ function Home() {
         <select
           className={styles.formItem}
           id={styles.activitySelect}
+          defaultValue={formData.activity}
           onChange={(event) => {
             setFormData({
               ...formData,
@@ -41,6 +43,9 @@ function Home() {
           <option value="running">Running</option>
           <option value="futsal">Futsal</option>
           <option value="badminton">Badminton</option>
+          <option value="frisbee">Frisbee</option>
+          <option value="gym">Gym</option>
+          <option value="basketball">Basketball</option>
         </select>
         <input
           type="submit"
