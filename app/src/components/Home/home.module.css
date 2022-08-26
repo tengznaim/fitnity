@@ -1,0 +1,68 @@
+.homeContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/home-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.searchForm {
+  height: 70%;
+  width: 30%;
+  border-radius: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+}
+
+.formItem {
+  margin: 10px 0px 10px 0px;
+}
+
+#formHeader {
+  color: var(--dark-gray);
+  width: 70%;
+  text-align: center;
+}
+
+#activitySelect {
+  font-family: "Poppins";
+  font-size: 1.2rem;
+  width: 150px;
+  font-weight: 600;
+  color: var(--dark-gray);
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--dark-purple);
+  padding: 10px 0px 10px 0px;
+}
+
+#activitySelect:focus {
+  outline: none;
+}
+
+.submitButton {
+  padding: 10px;
+  width: 150px;
+  background-color: var(--light-yellow);
+  color: var(--dark-gray);
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .searchForm {
+    width: 80%;
+  }
+  #formHeader {
+    font-size: 1.5rem;
+  }
+}
