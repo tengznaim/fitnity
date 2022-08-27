@@ -31,7 +31,7 @@ function Search() {
           activities: ["hiking"],
           keywords: ["waterfall", "monkeys", "fish"],
           locationCoordinates: { latitude: 3.5953, longitude: 101.7509 },
-          name: "Chiling Waterfall",
+          locationName: "Chiling Waterfall",
           sentimentPolarity: 36,
           thumbnailUrl:
             "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
@@ -78,7 +78,11 @@ function Search() {
                   <LocationCard key={result.id} itemData={result} />
                 ))
               : searchResults.map((result) => (
-                  <ActivityCard key={result.id} itemData={result} />
+                  <ActivityCard
+                    key={result.id}
+                    itemData={result}
+                    renderLocation="search"
+                  />
                 ))}
           </div>
         ) : (

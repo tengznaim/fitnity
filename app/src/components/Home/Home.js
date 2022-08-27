@@ -24,7 +24,6 @@ function Home() {
     <main className={styles.homeContainer}>
       <Navbar></Navbar>
       <SideNav></SideNav>
-      {/* Need to add onSubmit */}
       <form className={styles.searchForm} onSubmit={handleSubmit}>
         <h1 className={styles.formItem} id={styles.formHeader}>
           What would you like to do today?
@@ -61,8 +60,8 @@ function Home() {
         />
         <input
           type="submit"
-          value="Search for Events"
-          name="events"
+          value="Search for Activity"
+          name="activities"
           className={`${styles.formItem} ${styles.submitButton}`}
           onClick={(event) => {
             setFormData({

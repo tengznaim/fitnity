@@ -54,13 +54,13 @@ function Navbar() {
             </li>
             <li>
               <NavLink
-                to="/create-event"
+                to="/create-activity"
                 className={({ isActive }) =>
                   isActive
                     ? `${styles.linkItem} ${styles.activeLink}`
                     : styles.linkItem
                 }>
-                Create an Event
+                Create an Activity
               </NavLink>
             </li>
             <li>

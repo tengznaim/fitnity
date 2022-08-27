@@ -16,7 +16,7 @@ function LocationCard(props) {
         <img src={itemData.thumbnailUrl} id={style.thumbnailImage} />
       </div>
       <div className={style.locationInfo}>
-        <h2 id={style.cardHeader}>{itemData.name}</h2>
+        <h2 id={style.cardHeader}>{itemData.locationName}</h2>
         {itemData.activities && (
           <div>
             <p id={style.activityHeader}>Activities:</p>

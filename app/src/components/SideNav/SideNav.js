@@ -14,7 +14,7 @@ function SideNav() {
         <AiFillHome className={styles.navIcon} />
       </NavLink>
       <NavLink
-        to="/create-event"
+        to="/create-activity"
         className={({ isActive }) =>
           isActive ? `${styles.linkItem} ${styles.activeLink}` : styles.linkItem
         }>
