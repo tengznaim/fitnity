@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GiRunningShoe } from "react-icons/gi";
 import style from "./sportsOfFame.module.css";
 import Navbar from "../Navbar/Navbar";
 import SideNav from "../SideNav/SideNav";
@@ -6,12 +7,6 @@ import trophy from "../../assets/trophy.png";
 import silverTrophy from "../../assets/silver-trophy.png";
 
 function SportsOfFame() {
-  const [selectionStates, setSelectionStates] = useState({
-    sectionSelector: "trophies",
-    trophyIndex: "0",
-    selectedActivity: "hiking",
-  });
-
   const activities = [
     "Hiking",
     "Running",
@@ -21,6 +16,57 @@ function SportsOfFame() {
     "Frisbee",
     "Gym ",
   ];
+
+  const progressUnit = {
+    KM: "Completed",
+    Games: "Played",
+    Sessions: "Joined",
+  };
+
+  const userProgress = [
+    {
+      activity: "hiking",
+      level: 2,
+      progressValue: 10,
+      progressType: "KM",
+    },
+    {
+      activity: "futsal",
+      level: 3,
+      progressValue: 10,
+      progressType: "Games",
+    },
+    {
+      activity: "running",
+      level: 1,
+      progressValue: 10,
+      progressType: "KM",
+    },
+    {
+      activity: "badminton",
+      level: 2,
+      progressValue: 10,
+      progressType: "Games",
+    },
+    {
+      activity: "basketball",
+      level: 2,
+      progressValue: 10,
+      progressType: "Games",
+    },
+    {
+      activity: "gym",
+      level: 2,
+      progressValue: 10,
+      progressType: "Sessions",
+    },
+  ];
+
+  const [selectionStates, setSelectionStates] = useState({
+    sectionSelector: "trophies",
+    trophyIndex: "0",
+    selectedActivity: "hiking",
+  });
 
   const [wallStates, setWallStates] = useState([
     `http://localhost:3000${trophy}`,
@@ -45,10 +91,21 @@ function SportsOfFame() {
   };
 
   const handleSelection = (event) => {
-    setSelectionStates({
-      ...selectionStates,
-      [event.target.name]: event.target.value,
-    });
+    if (
+      event.target.name === "sectionSelector" &&
+      event.target.value === "stats"
+    ) {
+      setSelectionStates({
+        ...selectionStates,
+        trophyIndex: "-1",
+        [event.target.name]: event.target.value,
+      });
+    } else {
+      setSelectionStates({
+        ...selectionStates,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   return (
@@ -63,7 +120,11 @@ function SportsOfFame() {
           </p>
           <div className={style.selectorContainer}>
             <button
-              className={style.selectorButton}
+              className={
+                selectionStates.sectionSelector === "trophies"
+                  ? `${style.selectorButton} ${style.selectorActive}`
+                  : style.selectorButton
+              }
               id={style.leftButton}
               name="sectionSelector"
               value="trophies"
@@ -71,7 +132,11 @@ function SportsOfFame() {
               Your Trophies
             </button>
             <button
-              className={style.selectorButton}
+              className={
+                selectionStates.sectionSelector === "stats"
+                  ? `${style.selectorButton} ${style.selectorActive}`
+                  : style.selectorButton
+              }
               id={style.rightButton}
               name="sectionSelector"
               value="stats"
@@ -82,7 +147,7 @@ function SportsOfFame() {
           {selectionStates.sectionSelector === "trophies" ? (
             <div className={style.inventoryContainer}>
               <div className={style.trophyIndexSelector}>
-                {[...Array(8)].map((value, index) => (
+                {wallStates.map((wall, index) => (
                   <button
                     key={index}
                     className={style.indexButton}
@@ -115,7 +180,28 @@ function SportsOfFame() {
                   onClick={handleTrophySelection}></button>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className={style.statsContainer}>
+              {userProgress.map((progress, index) => (
+                <div key={index} className={style.statsCard}>
+                  <div className={style.iconContainer}>
+                    <GiRunningShoe className={style.icon} />
+                  </div>
+                  <div className={style.statsInfoContainer}>
+                    <h2>
+                      {progress.activity.charAt(0).toUpperCase() +
+                        progress.activity.substr(1).toLowerCase()}
+                    </h2>
+                    <p>Level {progress.level}</p>
+                    <p>
+                      {progress.progressValue} {progress.progressType}{" "}
+                      {progressUnit[progress.progressType]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className={style.trophySection}>
