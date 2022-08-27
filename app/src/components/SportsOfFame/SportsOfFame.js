@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 // import Icon from "react-dom";
 import {
   GiRunningShoe,
@@ -33,57 +34,32 @@ function SportsOfFame() {
     Sessions: "Joined",
   };
 
-  const userProgress = [
-    {
-      activity: "hiking",
-      level: 2,
-      progressValue: 10,
-      progressType: "KM",
-      iconimg: MdHiking,
-    },
-    {
-      activity: "futsal",
-      level: 3,
-      progressValue: 10,
-      progressType: "Games",
-      iconimg: IoFootballSharp,
-    },
-    {
-      activity: "running",
-      level: 1,
-      progressValue: 10,
-      progressType: "KM",
-      iconimg: GiRunningShoe,
-    },
-    {
-      activity: "badminton",
-      level: 2,
-      progressValue: 10,
-      progressType: "Games",
-      iconimg: GiShuttlecock,
-    },
-    {
-      activity: "basketball",
-      level: 2,
-      progressValue: 10,
-      progressType: "Games",
-      iconimg: GiBasketballBall,
-    },
-    {
-      activity: "gym",
-      level: 2,
-      progressValue: 10,
-      progressType: "Sessions",
-      iconimg: CgGym,
-    },
-    {
-      activity: "frisbee",
-      level: 5,
-      progressValue: 10,
-      progressType: "Games",
-      iconimg: GiFrisbee,
-    },
-  ];
+  const [userProgress, setUserProgress] = useState();
+
+  const getData = async () => {
+    const { data } = await axios.get("http://127.0.0.1:5000/sports-of-fame");
+    const temp = data["userProgress"];
+
+    temp.forEach((user) => {
+      user["iconImg"] = iconDict[user.activity];
+    });
+
+    setUserProgress(temp);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const iconDict = {
+    hiking: MdHiking,
+    futsal: IoFootballSharp,
+    running: GiRunningShoe,
+    basketball: GiBasketballBall,
+    frisbee: GiFrisbee,
+    gym: CgGym,
+    badminton: GiShuttlecock,
+  };
 
   const [selectionStates, setSelectionStates] = useState({
     sectionSelector: "trophies",
@@ -222,24 +198,25 @@ function SportsOfFame() {
             </div>
           ) : (
             <div className={style.statsContainer}>
-              {userProgress.map((progress, index) => (
-                <div key={index} className={style.statsCard}>
-                  <div className={style.iconContainer}>
-                    <progress.iconimg className={style.icon} />
+              {userProgress &&
+                userProgress.map((progress, index) => (
+                  <div key={index} className={style.statsCard}>
+                    <div className={style.iconContainer}>
+                      <progress.iconImg className={style.icon} />
+                    </div>
+                    <div className={style.statsInfoContainer}>
+                      <h2>
+                        {progress.activity.charAt(0).toUpperCase() +
+                          progress.activity.substring(1).toLowerCase()}
+                      </h2>
+                      <p>Level {progress.level}</p>
+                      <p>
+                        {progress.progressValue} {progress.progressType}{" "}
+                        {progressUnit[progress.progressType]}
+                      </p>
+                    </div>
                   </div>
-                  <div className={style.statsInfoContainer}>
-                    <h2>
-                      {progress.activity.charAt(0).toUpperCase() +
-                        progress.activity.substring(1).toLowerCase()}
-                    </h2>
-                    <p>Level {progress.level}</p>
-                    <p>
-                      {progress.progressValue} {progress.progressType}{" "}
-                      {progressUnit[progress.progressType]}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           )}
         </div>

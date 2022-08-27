@@ -88,4 +88,18 @@ def create_activity():
         return jsonify({"status": "successful"})
 
 
+@app.route('/sports-of-fame')
+def sports_of_fame():
+    results = []
+
+    collections = db.collection("user").document(
+        "M8LIsX8j5rpqznEDAZ55").collections()
+
+    for collection in collections:
+        for doc in collection.stream():
+            results.append(doc.to_dict())
+
+    return jsonify({"userProgress": results})
+
+
 app.run(debug=True)
