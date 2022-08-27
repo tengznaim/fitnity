@@ -29,7 +29,7 @@ function LocationCard(props) {
             </div>
           </div>
         )}
-        <button className={style.actionButton}>View 3 Active Events</button>
+        <button className={style.actionButton}>View Active Events</button>
       </div>
       <div className={style.reviewInfo}>
         {itemData.sentiment && (

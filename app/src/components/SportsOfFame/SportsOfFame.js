@@ -1,14 +1,20 @@
 import { useState } from "react";
 // import Icon from "react-dom";
-import { GiRunningShoe, GiShuttlecock, GiBasketballBall, GiFrisbee } from "react-icons/gi";
+import {
+  GiRunningShoe,
+  GiShuttlecock,
+  GiBasketballBall,
+  GiFrisbee,
+} from "react-icons/gi";
 import { IoFootballSharp } from "react-icons/io5";
 import { MdHiking } from "react-icons/md";
 import { CgGym } from "react-icons/cg";
 import style from "./sportsOfFame.module.css";
 import Navbar from "../Navbar/Navbar";
 import SideNav from "../SideNav/SideNav";
-import trophy from "../../assets/trophy.png";
+import goldTrophy from "../../assets/trophy.png";
 import silverTrophy from "../../assets/silver-trophy.png";
+import bronzeTrophy from "../../assets/bronze-trophy.png";
 
 function SportsOfFame() {
   const activities = [
@@ -86,7 +92,7 @@ function SportsOfFame() {
   });
 
   const [wallStates, setWallStates] = useState([
-    `http://localhost:3000${trophy}`,
+    `${bronzeTrophy}`,
     "",
     "",
     "",
@@ -97,8 +103,21 @@ function SportsOfFame() {
   ]);
 
   const handleTrophySelection = (event) => {
-    const childImg = event.target.children[0];
-    const imgSrc = childImg.src;
+    let imgSrc;
+
+    // Clikcing the image on top of the button
+    if ("src" in event.target) {
+      imgSrc = event.target.src;
+    }
+
+    // Clicking the button itself
+    else {
+      const childImg = event.target.children[0];
+      imgSrc = childImg.src;
+    }
+
+    console.log(imgSrc);
+
     const index = parseInt(selectionStates.trophyIndex);
 
     let temp = [...wallStates];
@@ -139,7 +158,7 @@ function SportsOfFame() {
             <button
               className={
                 selectionStates.sectionSelector === "trophies"
-                  ? `${style.selectorButton} ${style.selectorActive}`
+                  ? `${style.selectorButton} ${style.activeSelector}`
                   : style.selectorButton
               }
               id={style.leftButton}
@@ -151,7 +170,7 @@ function SportsOfFame() {
             <button
               className={
                 selectionStates.sectionSelector === "stats"
-                  ? `${style.selectorButton} ${style.selectorActive}`
+                  ? `${style.selectorButton} ${style.activeSelector}`
                   : style.selectorButton
               }
               id={style.rightButton}
@@ -167,7 +186,11 @@ function SportsOfFame() {
                 {wallStates.map((wall, index) => (
                   <button
                     key={index}
-                    className={style.indexButton}
+                    className={
+                      parseInt(selectionStates.trophyIndex) === index
+                        ? `${style.indexButton} ${style.activeSelector}`
+                        : style.indexButton
+                    }
                     name="trophyIndex"
                     value={index}
                     onClick={handleSelection}>
@@ -187,14 +210,14 @@ function SportsOfFame() {
               </select>
               <div className={style.inventoryPanels}>
                 <button className={style.panel} onClick={handleTrophySelection}>
-                  <img src={trophy} alt="" />
+                  <img src={bronzeTrophy} alt="" />
                 </button>
                 <button className={style.panel} onClick={handleTrophySelection}>
                   <img src={silverTrophy} alt="" />
                 </button>
-                <button
-                  className={style.panel}
-                  onClick={handleTrophySelection}></button>
+                <button className={style.panel} onClick={handleTrophySelection}>
+                  <img src={goldTrophy} alt="" />
+                </button>
               </div>
             </div>
           ) : (
@@ -207,7 +230,7 @@ function SportsOfFame() {
                   <div className={style.statsInfoContainer}>
                     <h2>
                       {progress.activity.charAt(0).toUpperCase() +
-                        progress.activity.substr(1).toLowerCase()}
+                        progress.activity.substring(1).toLowerCase()}
                     </h2>
                     <p>Level {progress.level}</p>
                     <p>
@@ -223,7 +246,7 @@ function SportsOfFame() {
       </div>
       <div className={style.trophySection}>
         <div className={style.shelf} id={style.top}>
-          <div class={style.shelfWalls}>
+          <div className={style.shelfWalls}>
             {wallStates.slice(0, 4).map((wall, index) => (
               <div
                 key={index}
@@ -242,11 +265,11 @@ function SportsOfFame() {
               </div>
             ))}
           </div>
-          <div class={style.shelfTrapezoid}></div>
-          <div class={style.shelfBase}></div>
+          <div className={style.shelfTrapezoid}></div>
+          <div className={style.shelfBase}></div>
         </div>
         <div className={style.shelf} id={style.top}>
-          <div class={style.shelfWalls}>
+          <div className={style.shelfWalls}>
             {wallStates.slice(4, 8).map((wall, index) => (
               <div
                 key={index + 4}
@@ -265,8 +288,8 @@ function SportsOfFame() {
               </div>
             ))}
           </div>
-          <div class={style.shelfTrapezoid}></div>
-          <div class={style.shelfBase}></div>
+          <div className={style.shelfTrapezoid}></div>
+          <div className={style.shelfBase}></div>
         </div>
       </div>
     </main>

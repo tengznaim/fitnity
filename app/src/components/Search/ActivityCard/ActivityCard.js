@@ -18,7 +18,7 @@ function ActivityCard(props) {
       <div className={style.activityInfo}>
         <h2 id={style.cardHeader}>
           {itemData.type.charAt(0).toUpperCase() +
-            itemData.type.substr(1).toLowerCase()}
+            itemData.type.substring(1).toLowerCase()}
         </h2>
         <p>
           <span className={style.boldText}>Created By:</span>{" "}

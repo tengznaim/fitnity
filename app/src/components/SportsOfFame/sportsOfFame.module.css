@@ -1,3 +1,4 @@
+/* Overall Page Styling */
 .pageContainer {
   min-height: 100vh;
   width: 100vw;
@@ -24,22 +25,7 @@
   grid-area: trophy;
 }
 
-@keyframes trophyFloat {
-  0% {
-    transform: translate(-50%);
-  }
-  50% {
-    transform: translate(-50%, -20px);
-  }
-  100% {
-    transform: translate(-50%);
-  }
-}
-
-.activeTrophy .trophyImage {
-  animation: trophyFloat 2s ease-in-out infinite;
-}
-
+/* Trophy Shelf Related */
 .shelf {
   width: 80%;
   height: 40%;
@@ -75,7 +61,7 @@
   left: 50%;
   transform: translate(-50%, 0);
   width: 60%;
-  z-index: 100;
+  z-index: 1;
 }
 
 .wall:nth-of-type(even) {
@@ -88,11 +74,32 @@
   background-color: var(--middle-purple);
 }
 
+@keyframes trophyFloat {
+  0% {
+    transform: translate(-50%);
+  }
+  50% {
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    transform: translate(-50%);
+  }
+}
+
+.activeTrophy .trophyImage {
+  animation: trophyFloat 2s ease-in-out infinite;
+}
+
+/* Selector section related */
 .choiceContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+}
+
+.choiceContent > * {
+  margin: 10px;
 }
 
 .selectorButton {
@@ -105,7 +112,8 @@
   cursor: pointer;
 }
 
-.selectorActive {
+.activeSelector,
+.indexButton.activeSelector {
   background-color: var(--dark-purple);
   color: var(--white);
 }
@@ -126,8 +134,8 @@
   text-align: center;
   border: none;
   font-weight: 600;
-  color: var(--white);
-  background: var(--dark-purple);
+  background: var(--white);
+  color: var(--dark-purple);
   cursor: pointer;
 }
 
@@ -135,6 +143,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.inventoryContainer > * {
+  margin: 10px 0px;
 }
 
 #activitySelector {
@@ -219,7 +231,7 @@
     grid-template-columns: unset;
   }
   .trophySection {
-    min-height: calc(50vh + 80px);
+    min-height: calc(60vh + 80px);
   }
   .choiceSection {
     align-items: unset;
@@ -249,9 +261,16 @@
   #description {
     text-align: center;
   }
+  .statsCard h2 {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 480px) {
+  .indexButton {
+    width: 35px;
+    height: 35px;
+  }
   .wall {
     height: 80px;
   }
