@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { GiRunningShoe } from "react-icons/gi";
+// import Icon from "react-dom";
+import { GiRunningShoe, GiShuttlecock, GiBasketballBall, GiFrisbee } from "react-icons/gi";
+import { IoFootballSharp } from "react-icons/io5";
+import { MdHiking } from "react-icons/md";
+import { CgGym } from "react-icons/cg";
 import style from "./sportsOfFame.module.css";
 import Navbar from "../Navbar/Navbar";
 import SideNav from "../SideNav/SideNav";
@@ -29,36 +33,49 @@ function SportsOfFame() {
       level: 2,
       progressValue: 10,
       progressType: "KM",
+      iconimg: MdHiking,
     },
     {
       activity: "futsal",
       level: 3,
       progressValue: 10,
       progressType: "Games",
+      iconimg: IoFootballSharp,
     },
     {
       activity: "running",
       level: 1,
       progressValue: 10,
       progressType: "KM",
+      iconimg: GiRunningShoe,
     },
     {
       activity: "badminton",
       level: 2,
       progressValue: 10,
       progressType: "Games",
+      iconimg: GiShuttlecock,
     },
     {
       activity: "basketball",
       level: 2,
       progressValue: 10,
       progressType: "Games",
+      iconimg: GiBasketballBall,
     },
     {
       activity: "gym",
       level: 2,
       progressValue: 10,
       progressType: "Sessions",
+      iconimg: CgGym,
+    },
+    {
+      activity: "frisbee",
+      level: 5,
+      progressValue: 10,
+      progressType: "Games",
+      iconimg: GiFrisbee,
     },
   ];
 
@@ -185,7 +202,7 @@ function SportsOfFame() {
               {userProgress.map((progress, index) => (
                 <div key={index} className={style.statsCard}>
                   <div className={style.iconContainer}>
-                    <GiRunningShoe className={style.icon} />
+                    <progress.iconimg className={style.icon} />
                   </div>
                   <div className={style.statsInfoContainer}>
                     <h2>
