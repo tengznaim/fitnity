@@ -1,0 +1,213 @@
+.pageContainer {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: grid;
+  grid-template-areas: "choice trophy";
+  grid-template-columns: 1.5fr 2fr;
+}
+
+.choiceSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: choice;
+  background-color: var(--light-purple);
+  border-radius: 0px 0px 200px 0px;
+}
+
+.trophySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-area: trophy;
+}
+
+@keyframes trophyFloat {
+  0% {
+    transform: translate(-50%);
+  }
+  50% {
+    transform: translate(-50%, -20px);
+  }
+  100% {
+    transform: translate(-50%);
+  }
+}
+
+.activeTrophy .trophyImage {
+  animation: trophyFloat 2s ease-in-out infinite;
+}
+
+.shelf {
+  width: 80%;
+  height: 40%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.shelfWalls {
+  width: calc(100% - 50px);
+  display: flex;
+}
+
+.shelfTrapezoid {
+  border-bottom: 80px solid var(--light-purple);
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  width: 100%;
+}
+
+.wall {
+  height: 150px;
+  width: 25%;
+  background-color: var(--middle-purple);
+  position: relative;
+}
+
+.trophyImage {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 60%;
+  z-index: 100;
+}
+
+.wall:nth-of-type(even) {
+  background-color: var(--light-purple);
+}
+
+.shelfBase {
+  height: 10px;
+  width: 100%;
+  background-color: var(--middle-purple);
+}
+
+.choiceContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.selectorButton {
+  padding: 10px 20px;
+  width: 150px;
+  background: var(--white);
+  color: var(--dark-gray);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+#leftButton {
+  border-radius: 10px 0px 0px 10px;
+}
+
+#rightButton {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.indexButton {
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  border: none;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--dark-purple);
+  cursor: pointer;
+}
+
+.inventoryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#activitySelector {
+  background: none;
+  border: none;
+  padding: 10px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--dark-purple);
+}
+
+#activitySelector:focus {
+  outline: none;
+}
+
+.inventoryPanels {
+  width: 80%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.panel {
+  background-color: var(--white);
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.panel img {
+  width: 40%;
+}
+
+@media screen and (max-width: 1200px) {
+  .pageContainer {
+    grid-template-areas:
+      "trophy"
+      "choice";
+    grid-template-columns: unset;
+  }
+  .trophySection {
+    min-height: calc(50vh + 80px);
+  }
+  .choiceSection {
+    align-items: unset;
+    border-radius: 0px 100px 0px 0px;
+  }
+  .shelf {
+    margin: 5px;
+  }
+  .shelfTrapezoid {
+    border-bottom: 40px solid var(--light-purple);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+  }
+  .shelfWalls {
+    width: calc(100% - 40px);
+  }
+  .wall {
+    height: 120px;
+  }
+  .shelfBase {
+    height: 5px;
+  }
+  #header {
+    font-size: 1.5rem;
+  }
+  #header,
+  #description {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wall {
+    height: 80px;
+  }
+}
