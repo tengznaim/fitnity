@@ -30,15 +30,21 @@ def index():
 @app.route("/search")
 def search():
     request_params = dict(request.args)
-    search_type, activity = request_params["searchType"], request_params["activity"]
+    search_type = request_params["searchType"]
 
     if search_type == "locations":
+        activity = request_params["activity"]
         docs = db.collection("locations").where(
             "activities", "array_contains", activity).get()
 
     elif search_type == "activities":
-        docs = db.collection("activities").where(
-            "type", "==", activity).get()
+        if "activity" in request_params:
+            docs = db.collection("activities").where(
+                "type", "==", request_params["activity"]).get()
+
+        elif "locationName" in request_params:
+            docs = db.collection("activities").where(
+                "locationName", "==", request_params["locationName"]).get()
 
     results = []
 

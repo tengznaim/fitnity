@@ -1,3 +1,4 @@
+import { useNavigate, createSearchParams } from "react-router-dom";
 import style from "./locationCard.module.css";
 
 function LocationCard(props) {
@@ -9,6 +10,21 @@ function LocationCard(props) {
       ? "Negative"
       : "Neutral";
   const itemKey = props.key;
+
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const searchData = {
+      locationName: itemData.locationName,
+      searchType: "activities",
+    };
+    navigate({
+      pathname: "/search",
+      search: createSearchParams(searchData).toString(),
+    });
+    window.location.reload();
+  };
 
   return (
     <div key={itemKey} className={style.resultCard}>
@@ -29,7 +45,9 @@ function LocationCard(props) {
             </div>
           </div>
         )}
-        <button className={style.actionButton}>View Active Events</button>
+        <button className={style.actionButton} onClick={handleSearch}>
+          View Active Events
+        </button>
       </div>
       <div className={style.reviewInfo}>
         {itemData.sentiment && (

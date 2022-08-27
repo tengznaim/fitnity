@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-// import Icon from "react-dom";
 import {
   GiRunningShoe,
   GiShuttlecock,
@@ -8,6 +7,7 @@ import {
   GiFrisbee,
 } from "react-icons/gi";
 import { IoFootballSharp } from "react-icons/io5";
+import { FaLock } from "react-icons/fa";
 import { MdHiking } from "react-icons/md";
 import { CgGym } from "react-icons/cg";
 import style from "./sportsOfFame.module.css";
@@ -18,6 +18,12 @@ import silverTrophy from "../../assets/silver-trophy.png";
 import bronzeTrophy from "../../assets/bronze-trophy.png";
 
 function SportsOfFame() {
+  const levelsRequired = {
+    bronze: 1,
+    silver: 3,
+    gold: 5,
+  };
+
   const activities = [
     "Hiking",
     "Running",
@@ -25,7 +31,7 @@ function SportsOfFame() {
     "Futsal",
     "Badminton",
     "Frisbee",
-    "Gym ",
+    "Gym",
   ];
 
   const progressUnit = {
@@ -35,15 +41,22 @@ function SportsOfFame() {
   };
 
   const [userProgress, setUserProgress] = useState();
+  const [userLevels, setUserLevels] = useState();
 
   const getData = async () => {
     const { data } = await axios.get("http://127.0.0.1:5000/sports-of-fame");
     const temp = data["userProgress"];
+    let userLevel = {};
 
-    temp.forEach((user) => {
-      user["iconImg"] = iconDict[user.activity];
+    temp.forEach((progress) => {
+      progress["iconImg"] = iconDict[progress.activity];
     });
 
+    temp.forEach((progress) => {
+      userLevel[progress.activity] = progress.level;
+    });
+
+    setUserLevels(userLevel);
     setUserProgress(temp);
   };
 
@@ -81,6 +94,13 @@ function SportsOfFame() {
   const handleTrophySelection = (event) => {
     let imgSrc;
 
+    if (
+      event.target.children[0] &&
+      event.target.children[0].tagName.toLowerCase() === "svg"
+    ) {
+      return;
+    }
+
     // Clikcing the image on top of the button
     if ("src" in event.target) {
       imgSrc = event.target.src;
@@ -91,8 +111,6 @@ function SportsOfFame() {
       const childImg = event.target.children[0];
       imgSrc = childImg.src;
     }
-
-    console.log(imgSrc);
 
     const index = parseInt(selectionStates.trophyIndex);
 
@@ -177,7 +195,8 @@ function SportsOfFame() {
               <select
                 id={style.activitySelector}
                 name="selectedActivity"
-                onChange={handleSelection}>
+                onChange={handleSelection}
+                value={selectionStates.selectedActivity}>
                 {activities.map((activity, index) => (
                   <option key={index} value={activity.toLowerCase()}>
                     {activity}
@@ -185,15 +204,40 @@ function SportsOfFame() {
                 ))}
               </select>
               <div className={style.inventoryPanels}>
-                <button className={style.panel} onClick={handleTrophySelection}>
-                  <img src={bronzeTrophy} alt="" />
-                </button>
-                <button className={style.panel} onClick={handleTrophySelection}>
-                  <img src={silverTrophy} alt="" />
-                </button>
-                <button className={style.panel} onClick={handleTrophySelection}>
-                  <img src={goldTrophy} alt="" />
-                </button>
+                {userProgress && (
+                  <>
+                    <button
+                      className={style.panel}
+                      onClick={handleTrophySelection}>
+                      {userLevels[selectionStates.selectedActivity] >=
+                      levelsRequired.bronze ? (
+                        <img src={bronzeTrophy} alt="" />
+                      ) : (
+                        <FaLock />
+                      )}
+                    </button>
+                    <button
+                      className={style.panel}
+                      onClick={handleTrophySelection}>
+                      {userLevels[selectionStates.selectedActivity] >=
+                      levelsRequired.silver ? (
+                        <img src={silverTrophy} alt="" />
+                      ) : (
+                        <FaLock />
+                      )}
+                    </button>
+                    <button
+                      className={style.panel}
+                      onClick={handleTrophySelection}>
+                      {userLevels[selectionStates.selectedActivity] >=
+                      levelsRequired.gold ? (
+                        <img src={goldTrophy} alt="" />
+                      ) : (
+                        <FaLock />
+                      )}
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           ) : (

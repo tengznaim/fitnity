@@ -13,74 +13,14 @@ function Search() {
   const [searchResults, setSearchResults] = useState();
 
   const getData = async () => {
-    const activity = searchParams.get("activity");
-    const searchType = searchParams.get("searchType");
-    // const { data } = await axios.get("http://127.0.0.1:5000/search", {
-    //   params: {
-    //     searchType: searchType,
-    //     activity: activity,
-    //   },
-    // });
+    const searchDict = Object.fromEntries([...searchParams]);
+    // const activity = searchParams.get("activity");
+    // const searchType = searchParams.get("searchType");
+    const { data } = await axios.get("http://127.0.0.1:5000/search", {
+      params: searchDict,
+    });
 
-    // setSearchResults(data);
-
-    // Hard coding for testing
-    if (searchType === "locations") {
-      const data = [
-        {
-          activities: ["hiking"],
-          keywords: ["waterfall", "monkeys", "fish"],
-          locationCoordinates: { latitude: 3.5953, longitude: 101.7509 },
-          locationName: "Chiling Waterfall",
-          sentimentPolarity: 36,
-          thumbnailUrl:
-            "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
-        },
-        {
-          activities: ["hiking"],
-          keywords: ["waterfall", "monkeys", "fish"],
-          locationCoordinates: { latitude: 3.5953, longitude: 101.7509 },
-          locationName: "Chiling Waterfall",
-          sentimentPolarity: 36,
-          thumbnailUrl:
-            "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
-        },
-        {
-          activities: ["hiking"],
-          keywords: ["waterfall", "monkeys", "fish"],
-          locationCoordinates: { latitude: 3.5953, longitude: 101.7509 },
-          locationName: "Chiling Waterfall",
-          sentimentPolarity: 36,
-          thumbnailUrl:
-            "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
-        },
-        {
-          activities: ["hiking"],
-          keywords: ["waterfall", "monkeys", "fish"],
-          locationCoordinates: { latitude: 3.5953, longitude: 101.7509 },
-          locationName: "Chiling Waterfall",
-          sentimentPolarity: 36,
-          thumbnailUrl:
-            "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
-        },
-      ];
-      setSearchResults(data);
-    } else {
-      const data = [
-        {
-          date: "26/08/2022",
-          description:
-            "Let's enjoy the waterfall! Planning a 2 hour hike ⛰ with 100m elevation.",
-          locationName: "Chiling Waterfall",
-          thumbnailUrl:
-            "https://selangor.travel/wp-content/uploads/2019/08/Sungai_Chilling_Mahseer_Fish_Sanctuary_Waterfall_Tourism_Selangor.jpg",
-          time: "0900",
-          type: "hiking",
-          userName: "fiquee",
-        },
-      ];
-      setSearchResults(data);
-    }
+    setSearchResults(data);
   };
 
   useEffect(() => {
