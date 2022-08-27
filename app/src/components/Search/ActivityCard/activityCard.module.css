@@ -1,0 +1,88 @@
+.resultCard {
+  display: grid;
+  background-color: var(--light-purple);
+  border-radius: 10px;
+  height: 400px;
+  padding: 20px;
+  grid-template-rows: 1fr 1fr;
+}
+
+.imageContainer {
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.activityInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.activityInfo p {
+  font-size: 0.8rem;
+}
+
+#cardHeader {
+  color: var(--dark-gray);
+}
+
+.sentiment {
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  color: var(--white);
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionButton {
+  padding: 10px;
+  font-size: 0.8rem;
+  background-color: var(--dark-purple);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  margin: 5px 0px;
+  width: 70%;
+}
+
+.boldText {
+  font-weight: 600;
+}
+
+#thumbnailImage {
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .resultCard {
+    height: 250px;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+  }
+  .imageContainer {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+  #thumbnailImage {
+    height: 100%;
+  }
+  .cardHeader {
+    font-size: 1.2rem;
+  }
+  .activityInfo p,
+  .actionButton {
+    font-size: 0.7rem;
+  }
+}

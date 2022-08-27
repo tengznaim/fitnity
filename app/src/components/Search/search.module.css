@@ -39,23 +39,18 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.resultCard {
-  background-color: var(--light-purple);
-  border-radius: 10px;
-  height: 250px;
+@media screen and (max-width: 1200px) {
+  .resultItems {
+    grid-template-rows: 1fr;
+    grid-template-columns: unset;
+  }
 }
 
 @media screen and (max-width: 768px) {
   #header {
     font-size: 1.5rem;
   }
-
-  .resultItems {
-    grid-template-rows: 1fr;
-    grid-template-columns: unset;
-  }
-
-  .resultCard {
-    height: 100px;
+  .contentContainer {
+    width: 90%;
   }
 }

@@ -1,0 +1,130 @@
+.resultCard {
+  display: grid;
+  background-color: var(--light-purple);
+  border-radius: 10px;
+  height: 400px;
+  padding: 20px;
+  grid-template-areas:
+    "img img"
+    "location review";
+  grid-template-rows: 1fr 1fr;
+}
+
+.imageContainer {
+  grid-area: img;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.locationInfo {
+  grid-area: location;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.reviewInfo {
+  grid-area: review;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+#cardHeader {
+  color: var(--dark-gray);
+}
+
+.sentiment {
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  color: var(--white);
+}
+
+#positive {
+  background-color: var(--green);
+}
+
+#negative {
+  background-color: var(--red);
+}
+
+#mixed {
+  background-color: var(--orange);
+}
+
+.keywordContainer {
+  display: flex;
+}
+
+#activityHeader {
+  font-weight: 600;
+}
+
+#keywordHeader {
+  text-align: right;
+  font-weight: 600;
+}
+
+.keyword {
+  color: var(--dark-gray);
+  background-color: var(--light-yellow);
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+.actionButton {
+  padding: 10px;
+  background-color: var(--dark-purple);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+}
+
+#thumbnailImage {
+  width: 100%;
+}
+
+.boldText {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1200px) {
+  .resultCard {
+    height: 400px;
+    /* grid-template-rows: auto; */
+    /* grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "img location review"; */
+    padding: 10px;
+  }
+  .imageContainer {
+    width: 100%;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+  #thumbnailImage {
+    height: 100%;
+  }
+  .cardHeader {
+    font-size: 1.2rem;
+  }
+  .locationInfo p,
+  .actionButton,
+  .reviewInfo p {
+    font-size: 0.7rem;
+  }
+  .sentiment {
+    padding: 10px;
+    text-align: center;
+    border-radius: 20px;
+    color: var(--white);
+  }
+}
