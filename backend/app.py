@@ -55,4 +55,36 @@ def search():
     return jsonify(results)
 
 
+@app.route('/create-activity', methods=['GET', 'POST'])
+def create_activity():
+    if request.method == "GET":
+        docs = db.collection("locations").get()
+
+        location_results = []
+
+        for doc in docs:
+            temp = doc.to_dict()
+            location_results.append({
+                "locationName": temp["locationName"],
+                "activities": temp["activities"]
+            })
+
+        docs = db.collection("activities").where(
+            "userName", "==", "fiquee").get()
+
+        user_activities_results = []
+
+        for doc in docs:
+            temp = doc.to_dict()
+            user_activities_results.append(temp)
+
+        return jsonify({"locations": location_results, "userActivities": user_activities_results})
+
+    elif request.method == "POST":
+        request_json = request.json
+        db.collection("activities").add(request_json)
+
+        return jsonify({"status": "successful"})
+
+
 app.run(debug=True)
