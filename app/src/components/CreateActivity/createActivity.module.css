@@ -1,0 +1,103 @@
+.postContainer {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url("../../assets/create-activity-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.contentContainer {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 60%;
+}
+
+.postForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50vh;
+  width: 100%;
+  color: var(--dark-gray);
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.formItem {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formItem label {
+  font-weight: 600;
+}
+
+.formItem input,
+.formItem select {
+  width: 50%;
+  border: none;
+  padding: 10px;
+  border-bottom: 2px solid var(--dark-purple);
+  color: var(--dark-gray);
+}
+
+.formItem input:focus,
+.formItem select:focus {
+  outline: none;
+}
+
+#createButton {
+  padding: 10px;
+  background-color: var(--light-yellow);
+  color: var(--dark-gray);
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.userActivity {
+  padding: 20px 0px;
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.activityCard {
+  min-height: 200px;
+  background-color: var(--light-purple);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .contentContainer {
+    width: 80%;
+  }
+  .cardContainer {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: unset;
+    gap: 20px;
+  }
+  .formItem {
+    width: 80%;
+  }
+  .formItem,
+  #createButton {
+    font-size: 0.8rem;
+  }
+  .postForm h1,
+  .userActivity h2 {
+    font-size: 1.2rem;
+  }
+}
