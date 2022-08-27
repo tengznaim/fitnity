@@ -36,7 +36,7 @@ def search():
         docs = db.collection("locations").where(
             "activities", "array_contains", activity).get()
 
-    elif search_type == "events":
+    elif search_type == "activities":
         docs = db.collection("activities").where(
             "type", "==", activity).get()
 
@@ -81,8 +81,9 @@ def create_activity():
         return jsonify({"locations": location_results, "userActivities": user_activities_results})
 
     elif request.method == "POST":
-        request_json = request.json
-        db.collection("activities").add(request_json)
+        new_activity_data = request.json
+        new_activity_data["time"] = new_activity_data["time"].replace(":", "")
+        db.collection("activities").add(new_activity_data)
 
         return jsonify({"status": "successful"})
 
