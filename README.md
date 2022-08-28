@@ -1,6 +1,8 @@
 # Fitnity - Garuda Hacks 3.0 2022
 
-This is our hack submission, Fitnity, submitted for Garuda Hacks 3.0 2022.
+<img src="fitnity.png">
+
+Fitnity is a one stop application for discovering sports events and a sports-loving community while encouraging a healthy and active lifestyle. This is our hack submission for Garuda Hacks 3.0 2022.
 
 ## Inspiration
 
