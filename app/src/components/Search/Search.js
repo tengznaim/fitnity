@@ -16,7 +16,7 @@ function Search() {
     const searchDict = Object.fromEntries([...searchParams]);
     // const activity = searchParams.get("activity");
     // const searchType = searchParams.get("searchType");
-    const { data } = await axios.get("http://127.0.0.1:5000/search", {
+    const { data } = await axios.get("https://gh-2022.herokuapp.com/search", {
       params: searchDict,
     });
 

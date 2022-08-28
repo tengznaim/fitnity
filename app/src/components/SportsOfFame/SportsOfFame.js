@@ -44,7 +44,9 @@ function SportsOfFame() {
   const [userLevels, setUserLevels] = useState();
 
   const getData = async () => {
-    const { data } = await axios.get("http://127.0.0.1:5000/sports-of-fame");
+    const { data } = await axios.get(
+      "https://gh-2022.herokuapp.com/sports-of-fame"
+    );
     const temp = data["userProgress"];
     let userLevel = {};
 

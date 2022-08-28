@@ -19,7 +19,9 @@ function CreateActivity() {
   });
 
   const getData = async () => {
-    const { data } = await axios.get("http://127.0.0.1:5000/create-activity");
+    const { data } = await axios.get(
+      "https://gh-2022.herokuapp.com/create-activity"
+    );
 
     setUserActivities(data["userActivities"]);
     setLocations(data["locations"]);
@@ -28,7 +30,7 @@ function CreateActivity() {
   const submitActivity = async () => {
     const json = JSON.stringify(formData);
     const res = await axios.post(
-      "http://127.0.0.1:5000/create-activity",
+      "https://gh-2022.herokuapp.com/create-activity",
       json,
       {
         headers: {

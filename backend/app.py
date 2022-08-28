@@ -2,24 +2,45 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import firebase_admin
 from firebase_admin import firestore
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import os
 import json
 
-load_dotenv()
+# Use for local testing
+# load_dotenv()
 
-service_account_path = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
+# service_account_path = os.environ.get("FIREBASE_SERVICE_ACCOUNT")
+# service_account_obj = os.environ.get("GOOGLE_CREDS")
+# print(service_account_obj)
+
+
+def create_keyfile_dict():
+    variables_keys = {
+        "type": os.getenv("TYPE"),
+        "project_id": os.getenv("PROJECT_ID"),
+        "private_key_id": os.getenv("PRIVATE_KEY_ID"),
+        "private_key": os.getenv("PRIVATE_KEY"),
+        "client_email": os.getenv("CLIENT_EMAIL"),
+        "client_id": os.getenv("CLIENT_ID"),
+        "auth_uri": os.getenv("AUTH_URI"),
+        "token_uri": os.getenv("TOKEN_URI"),
+        "auth_provider_x509_cert_url": os.getenv("AUTH_PROVIDER_X509_CERT_URL"),
+        "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL")
+    }
+    return variables_keys
+
 
 if not firebase_admin._apps:
     cred_object = firebase_admin.credentials.Certificate(
-        service_account_path)
+        create_keyfile_dict())
     default_app = firebase_admin.initialize_app(cred_object)
 
 app = Flask(__name__)
 db = firestore.client()
 
 # Change this to the proper URL of the frontend when ready for deployment
-CORS(app, origins=["http://localhost:3000"])
+# This is currently our deployed frontend URL.
+CORS(app, origins=["https://fitnity.web.app"])
 
 
 @app.route("/")
@@ -108,4 +129,7 @@ def sports_of_fame():
     return jsonify({"userProgress": results})
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
+
+    # app.run(debug=True)
