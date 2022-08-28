@@ -11,11 +11,11 @@ function Navbar() {
   return (
     <nav className={styles.navContainer}>
       <h1 className={styles.logo}>
-        Suka<span id={styles.logoHighlight}>wan</span>
+        Fit<span id={styles.logoHighlight}>nity</span>
       </h1>
       <div className={styles.pointContainer}>
         <BsFillLightningChargeFill id={styles.pointIcon} />
-        <p>69420</p>
+        <p>12345</p>
       </div>
       <button
         className={styles.toggleButton}
